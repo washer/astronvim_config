@@ -46,6 +46,18 @@ return {
     ["<leader>fH"] = { "<cmd>Telescope harpoon marks<cr>"},
 
 
+    -- Navbuddy
+    ["<leader>N"] = { "<cmd>Navbuddy<cr>" }, -- change description but the same command
+    -- lsp-lines
+    ["<leader>L"] = {
+      function()
+        require("lsp_lines").toggle()
+      end,
+      desc = "Toggle lsp_lines"
+    },
+
+
+
     -- Spectre
 
     vim.keymap.set('n', '<leader>s', '<cmd>lua require("spectre").open()<CR>', {

@@ -18,8 +18,49 @@ return {
     -- tables with the `name` key will be registered with which-key if it's installed
     -- this is useful for naming menus
     ["<leader>b"] = { name = "Buffers" },
+    ["<leader>t"] = { "<cmd>TestFile<cr>" }, 
     -- quick save
     -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
+    --
+    -- Harpoon
+    ["<leader>ha"] = {
+      function()
+        require("harpoon.mark").add_file()
+      end
+    },
+    ["<leader>hm"] = {
+      function()
+        require("harpoon.ui").toggle_quick_menu()
+      end
+    },
+    ["<leader>hj"] = {
+      function()
+        require("harpoon.ui").nav_next()
+      end
+    },
+    ["<leader>hf"] = {
+      function()
+        require("harpoon.ui").nav_prev()
+      end
+    },
+    ["<leader>fH"] = { "<cmd>Telescope harpoon marks<cr>"},
+
+
+    -- Spectre
+
+    vim.keymap.set('n', '<leader>s', '<cmd>lua require("spectre").open()<CR>', {
+      desc = "Open Spectre"
+    }),
+    vim.keymap.set('n', '<leader>sw', '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', {
+      desc = "Search current word"
+    }),
+    vim.keymap.set('v', '<leader>sw', '<esc><cmd>lua require("spectre").open_visual()<CR>', {
+      desc = "Search current word"
+    }),
+    vim.keymap.set('n', '<leader>sp', '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>', {
+      desc = "Search on current file"
+    })
+
   },
   t = {
     -- setting a mapping to false will disable it

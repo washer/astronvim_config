@@ -3,6 +3,8 @@ return {
   "neanias/everforest-nvim",
   "nvim-pack/nvim-spectre",
   "jvgrootveld/telescope-zoxide",
+  "mg979/vim-visual-multi",
+  "folke/tokyonight.nvim",
   {
   "zbirenbaum/copilot.lua",
   cmd = "Copilot",
@@ -37,6 +39,13 @@ return {
       })
     end,
     event = "User Astrofile",
+  },
+  {
+    "folke/todo-comments.nvim",
+    requires = "nvim-lua/plenary.nvim",
+    config = function()
+      require("todo-comments").setup()
+    end,
   },
   {
   "ThePrimeagen/harpoon",

@@ -1,19 +1,21 @@
-return {
-  {
-  "mfussenegger/nvim-dap",
-  enabled = true,
-  config = function()
-    local dap = require('dap')
-    local NODE_DIR = "/Users/msp/.local/share/nvim/mason/packages/node-debug2-adapter"
+return {{ 
+    "jay-babu/mason-nvim-dap.nvim",
+    opts = {
+        handlers = {
+            node2 = function(source_name)
+                local dap = require "dap"
+                dap.adapters.node2 = {
+                    type = "executable",
+                    command = "node",
+                    args = {"--inspect",
+                            vim.env.HOME .. "~/.local/share/nvim/mason/packages/node-debug2-adapter/out/src/nodeDebug.js"}
+                }
+            end,
 
-    dap.adapters.node = {
-      type = "executable",
-      command = "node",
-      args = { NODE_DIR },
+
+
+            require('dap.ext.vscode').load_launchjs(nil, { node = {'javascript', 'typescript' } })
+        }
     }
 
-    -- read .vscode/launch.json
-    require('dap.ext.vscode').load_launchjs(nil, { node = {'javascript', 'typescript' } })
-  end,
-  }
-}
+}}

@@ -49,8 +49,8 @@ return {
       -- end
     },
     -- enable servers that you already have installed without mason
-    servers = {
-    },
+    -- servers = {
+    -- },
   },
 
   -- Configure require("lazy").setup() options

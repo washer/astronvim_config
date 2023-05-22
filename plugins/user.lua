@@ -1,5 +1,6 @@
 return {
   "nvim-lua/plenary.nvim",
+  "folke/neodev.nvim",
   "neanias/everforest-nvim",
   "nvim-pack/nvim-spectre",
   "jvgrootveld/telescope-zoxide",
@@ -23,11 +24,29 @@ return {
   },
   {
     "folke/todo-comments.nvim",
-    requires = "nvim-lua/plenary.nvim",
-    config = function() require("todo-comments").setup() end,
+    lazy = false,
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function()
+      require("todo-comments").setup {
+        colors = {
+          error = { "DiagnosticError", "ErrorMsg", "#DC2626" },
+          warning = { "DiagnosticWarn", "WarningMsg", "#FBBF24" },
+          info = { "DiagnosticInfo", "#10B981" },
+          hint = { "DiagnosticHint", "#10B981" },
+          default = { "Identifier", "#7C3AED" },
+          test = { "Identifier", "#FF00FF" },
+        },
+      }
+    end,
   },
   {
     "ThePrimeagen/harpoon",
     config = function() require("telescope").load_extension "harpoon" end,
+  },
+  {
+    "kylechui/nvim-surround",
+    version = "*", -- Use for stability; omit to use `main` branch for the latest features
+    event = "VeryLazy",
+    config = function() require("nvim-surround").setup {} end,
   },
 }

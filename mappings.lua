@@ -20,7 +20,14 @@ return {
     -- tables with the `name` key will be registered with which-key if it's installed
     -- this is useful for naming menus
     ["<leader>b"] = { name = "Buffers" },
-    ["<leader>t"] = { "<cmd>TestFile<cr>" },
+    -- ["<leader>t"] = { "<cmd>TestFile<cr>" },
+    -- ["<leader>t"] = {
+    --   function() require("neotest").run.run(vim.fn.expand "%") end,
+    -- },
+    ["<leader>t"] = {
+      function() require("neotest").run.run { strategy = "dap" } end,
+    },
+
     -- quick save
     -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
 

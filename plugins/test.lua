@@ -10,28 +10,29 @@ return {
       vim.g["test#javascript#runner"] = "jest"
     end,
   },
-  "haydenmeade/neotest-jest",
   {
     "nvim-neotest/neotest",
     lazy = false,
     dependencies = {
       "nvim-lua/plenary.nvim",
       "haydenmeade/neotest-jest",
-      "antoinemadec/FixCursorHold.nvim"
+      "nvim-neotest/neotest-vim-test",
+      "antoinemadec/FixCursorHold.nvim",
     },
     config = function()
-    require('neotest').setup({
-      adapters = {
-        require('neotest-jest')({
-          jestCommand = "npm test --",
-          env = { CI = true },
-          cwd = function(path)
-            return vim.fn.getcwd()
-          end,
-        }),
-      },
-      strategy = "dap"
-    })
-  end,
-  }
+      require("neotest").setup {
+        adapters = {
+          require "neotest-jest" {
+            jestCommand = "npm test --",
+            env = { TRANSLATIONS_PATH = "./src/utils/locale/translations.json", NODE_ENV = test, TZ = UTC },
+            cwd = function(path) return vim.fn.getcwd() end,
+          },
+          require "neotest-vim-test" {
+            ignore_file_types = { "typescript" },
+          },
+        },
+        strategy = "dap",
+      }
+    end,
+  },
 }

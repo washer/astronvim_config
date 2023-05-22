@@ -14,13 +14,14 @@ return {
     -- overrides `require("mason-null-ls").setup(...)`
     opts = {
       ensure_installed = { "eslint_d", "fixjson" },
+      set,
     },
   },
   {
     "jay-babu/mason-nvim-dap.nvim",
     -- overrides `require("mason-nvim-dap").setup(...)`
     opts = {
-      ensure_installed = { "node2" },
+      -- ensure_installed = { "node2" },
     },
   },
 }

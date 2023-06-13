@@ -17,6 +17,14 @@ return {
       end,
       desc = "Pick to close",
     },
+    vim.keymap.set("n", "<leader>r", "<cmd>lua vim.lsp.buf.rename()<cr>", {
+      desc = "replace variable under cursor",
+    }),
+    vim.keymap.set("n", "<leader>i", "<cmd>lua vim.lsp.buf.hover()<cr>", {}),
+    -- vim.keymap.set("n", "<leader>r", "<cmd>LspRename()<CR>", {
+    --   desc = "Replace variable under cursor",
+    -- }),
+
     -- tables with the `name` key will be registered with which-key if it's installed
     -- this is useful for naming menus
     ["<leader>b"] = { name = "Buffers" },
@@ -122,6 +130,22 @@ return {
     ["<leader>fp"] = {
       function() require("telescope").extensions.project.project {} end,
     },
+
+
+    ["<leader>ft"] = { "<cmd>TodoTelescope<cr>" },
+
+
+    -- [z<leader>fr"] = {
+    --
+    -- }
+
+    -- goto-preview
+
+    ["gpd"] = { "<cmd>lua require('goto-preview').goto_preview_definition()<cr>" },
+    ["gpt"] = { "<cmd>lua require('goto-preview').goto_preview_type_definition()<cr>" },
+    ["gpi"] = { "<cmd>lua require('goto-preview').goto_preview_implementation()<cr>" },
+    ["gpr"] = { "<cmd>lua require('goto-preview').goto_preview_references()<cr>" },
+    ["gP"] = { "<cmd>lua require('goto-preview').goto_preview_implementation()<cr>" },
   },
   t = {
     -- setting a mapping to false will disable it

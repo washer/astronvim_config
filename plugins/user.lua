@@ -4,8 +4,32 @@ return {
   "neanias/everforest-nvim",
   "nvim-pack/nvim-spectre",
   "jvgrootveld/telescope-zoxide",
-  "mg979/vim-visual-multi",
+  {
+    "svermeulen/vim-cutlass",
+    lazy = false
+  },
   "folke/tokyonight.nvim",
+  "jacoborus/tender.vim",
+  "rebelot/kanagawa.nvim",
+  { "ellisonleao/gruvbox.nvim", priority = 1000 },
+  {
+    "savq/melange-nvim",
+    termguicolors = true
+  },
+  {
+    "rmagatti/goto-preview",
+    lazy = false
+  },
+  {
+    "mg979/vim-visual-multi",
+    lazy = false
+  },
+  {
+    "echasnovski/mini.indentscope",
+    version = false,
+    config = function() require("mini.indentscope").setup() end,
+    lazy = false,
+  },
   {
     "petertriho/nvim-scrollbar",
     config = function() require("scrollbar").setup() end,
@@ -17,6 +41,7 @@ return {
       require("lsp_lines").setup {
         vim.diagnostic.config {
           virtual_text = false,
+          virtual_lines = false,
         },
       }
     end,
@@ -48,5 +73,31 @@ return {
     version = "*", -- Use for stability; omit to use `main` branch for the latest features
     event = "VeryLazy",
     config = function() require("nvim-surround").setup {} end,
+  },
+  {
+    "xiyaowong/transparent.nvim",
+    lazy = false,
+    config = function()
+      require("transparent").setup {
+        extra_groups = {
+          "NormalFloat", -- plugins which have float panel such as Lazy, Mason, LspInfo
+          "NvimTreeNormal", -- NvimTree
+        },
+      }
+    end,
+  },
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    config = function()
+      require("indent_blankline").setup {
+        space_char_blankline = " ",
+        show_current_context = true,
+        show_current_context_start = true,
+      }
+    end,
+  },
+  {
+    "dmmulroy/tsc.nvim",
+    config = function() require("tsc").setup() end,
   },
 }
